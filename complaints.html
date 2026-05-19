@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Complaint History
+    </title>
+
+    <!-- Bootstrap -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            font-family:Arial,sans-serif;
+            background:#F1F5F9;
+        }
+
+        /* Sidebar */
+
+        .sidebar{
+            width:250px;
+            height:100vh;
+            background:#1E293B;
+            position:fixed;
+            padding-top:20px;
+        }
+
+        .sidebar h2{
+            color:white;
+            text-align:center;
+            margin-bottom:30px;
+            font-weight:bold;
+        }
+
+        .sidebar a{
+            display:block;
+            color:white;
+            text-decoration:none;
+            padding:15px 20px;
+            transition:0.3s;
+        }
+
+        .sidebar a:hover{
+            background:#2563EB;
+            padding-left:30px;
+        }
+
+        .sidebar i{
+            margin-right:10px;
+        }
+
+        /* Main Content */
+
+        .main-content{
+            margin-left:250px;
+            padding:40px;
+        }
+
+        .table-box{
+            background:white;
+            padding:35px;
+            border-radius:20px;
+            box-shadow:0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        h2{
+            color:#2563EB;
+            font-weight:bold;
+            margin-bottom:20px;
+        }
+
+        .status-pending{
+            background:orange;
+            color:white;
+            padding:8px 14px;
+            border-radius:10px;
+        }
+
+        .status-progress{
+            background:#2563EB;
+            color:white;
+            padding:8px 14px;
+            border-radius:10px;
+        }
+
+        .status-resolved{
+            background:green;
+            color:white;
+            padding:8px 14px;
+            border-radius:10px;
+        }
+
+        .search-box{
+            margin-bottom:20px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+
+    <div class="sidebar">
+
+        <h2>
+            Complaint System
+        </h2>
+
+        <a href="dashboard.html">
+            <i class="fas fa-home"></i>
+            Dashboard
+        </a>
+
+        <a href="complaint.html">
+            <i class="fas fa-edit"></i>
+            Submit Complaint
+        </a>
+
+        <a href="complaints.html">
+            <i class="fas fa-list"></i>
+            View Complaints
+        </a>
+
+        <a href="index.html">
+            <i class="fas fa-sign-out-alt"></i>
+            Logout
+        </a>
+
+    </div>
+
+    <!-- Main Content -->
+
+    <div class="main-content">
+
+        <div class="table-box">
+
+            <h2>
+                Complaint History
+            </h2>
+
+            <!-- Search Bar -->
+
+            <input type="text"
+                id="searchInput"
+                class="form-control search-box"
+                placeholder="Search complaints..."
+                onkeyup="searchComplaint()">
+
+            <!-- Back Button -->
+
+            <a href="dashboard.html"
+                class="btn btn-primary mb-3">
+
+                Back to Dashboard
+
+            </a>
+
+            <!-- Complaint Table -->
+
+            <table class="table table-bordered"
+                id="complaintTable">
+
+                <thead class="table-primary">
+
+                    <tr>
+
+                        <th>ID</th>
+                        <th>Complaint</th>
+                        <th>Date</th>
+                        <th>Status</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>1</td>
+
+                        <td>
+                            Water Issue
+                        </td>
+
+                        <td>
+                            18-05-2026
+                        </td>
+
+                        <td>
+                            <span class="status-pending">
+                                Pending
+                            </span>
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>2</td>
+
+                        <td>
+                            Parking Issue
+                        </td>
+
+                        <td>
+                            18-05-2026
+                        </td>
+
+                        <td>
+                            <span class="status-progress">
+                                In Progress
+                            </span>
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>3</td>
+
+                        <td>
+                            Electricity Problem
+                        </td>
+
+                        <td>
+                            18-05-2026
+                        </td>
+
+                        <td>
+                            <span class="status-resolved">
+                                Resolved
+                            </span>
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        function searchComplaint(){
+
+            let input =
+                document.getElementById(
+                    "searchInput"
+                ).value.toLowerCase();
+
+            let rows =
+                document.querySelectorAll(
+                    "#complaintTable tbody tr"
+                );
+
+            rows.forEach(row => {
+
+                let text =
+                    row.innerText.toLowerCase();
+
+                row.style.display =
+                    text.includes(input)
+                    ? ""
+                    : "none";
+            });
+        }
+
+    </script>
+
+</body>
+
+</html>
